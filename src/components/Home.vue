@@ -10,15 +10,14 @@ const count = ref(0)
 
 <template>
   <div> 
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <h1>
-      Dots Game 
-    </h1>
-
-    <div> 
-      <w-button class="ma1" color="primary" text xl>Play</w-button>
-      <w-button class="ma1" color="primary" text xl>Play Online</w-button>
-    </div>
+    
+      <img alt="Vue logo" src="../assets/logo.png" />
+      <h1>
+        Dots Game 
+      </h1>
+      <w-button id="asd" class="ma1" color="primary" text xl route="/game">Play</w-button>
+      <h1> </h1>
+      <w-button  id="asd" class="ma1" color="primary" text xl disabled>Play Online</w-button>
     
   </div>
   
@@ -29,8 +28,9 @@ a {
   color: #42b983;
 }
 
-w-button {
-  width: 100px;
+#asd {
+  width: 400px;
   height: 100px;
+  font-size: 72px;
 }
 </style>

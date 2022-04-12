@@ -5,8 +5,6 @@ import Game from "./components/Game.vue"
 import WaveUI from 'wave-ui'
 import 'wave-ui/dist/wave-ui.css'
 import { createRouter, createWebHashHistory } from 'vue-router'
-import SequentialEntrance from 'vue-sequential-entrance'
-import 'vue-sequential-entrance/vue-sequential-entrance.css'
 
 
 
@@ -24,7 +22,6 @@ const router = createRouter({
 
 const app = createApp(App)
 app.use(router)
-app.use(SequentialEntrance);
 new WaveUI(app, {
     // Some Wave UI options.
   })
