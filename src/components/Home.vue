@@ -1,8 +1,8 @@
 <script setup>
-import { ref } from 'vue'
+import { ref } from "vue"
 
 defineProps({
-  msg: String
+  msg: String,
 })
 
 const count = ref(0)
@@ -18,9 +18,8 @@ const count = ref(0)
       <w-button id="asd" class="ma1" color="primary" text xl route="/game">Play</w-button>
       <h1> </h1>
       <w-button  id="asd" class="ma1" color="primary" text xl disabled>Play Online</w-button>
-    
   </div>
-  
+    
 </template>
 
 <style scoped>
