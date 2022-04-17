@@ -1,5 +1,7 @@
 <script setup>
 import { ref } from "vue"
+import Board from "./Board.vue"
+
 const toggleSlideFadeDown = ref(setTimeout(() => true, 1000))
 const readyp1 = ref(false)
 const readyp2 = ref(false)
@@ -40,15 +42,17 @@ const play = ref(false)
     </w-card>
   </w-flex>
 
-  <w-button
-  @click="play = !play"
-  id="bt-play"
-  class="ma1"
-  bg-color="success"
-  color="yellow-light2">
-  Play
-</w-button>
+    <w-button
+    @click="play = !play"
+    id="bt-play"
+    class="ma1"
+    bg-color="success"
+    color="yellow-light2">
+    Play
+    </w-button>
   </div>
+
+  <board v-else />
   
 </template>
 
