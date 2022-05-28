@@ -1,9 +1,16 @@
 <script setup>
 import { ref } from "vue"
+import { ColorInputWithoutInstance } from "tinycolor2";
+import board from "./Board.vue"
 const toggleSlideFadeDown = ref(setTimeout(() => true, 1000))
 const readyp1 = ref(false)
 const readyp2 = ref(false)
 const play = ref(false)
+const pureColor = ref<ColorInputWithoutInstance>("red");
+const gradientColor = ref("linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 100%)")
+components: {
+    board
+}
 </script>
 
 <template>
@@ -17,10 +24,16 @@ const play = ref(false)
             src="https://i.pinimg.com/originals/fd/aa/7a/fdaa7a4fcc3db7e975ad935786e3e57a.png"
           />
         </div>
-        <div id="color-p">CEK</div>
-        <w-button id="btn-ready-p1" color="primary" text lg
-          ><h2>READY</h2></w-button
-        >
+        <w-input id="input1"
+          class="mb4"
+          label="Name"
+          shadow>
+        </w-input>
+        <color-picker v-model:pureColor="pureColor" v-model:gradientColor="gradientColor"/>
+        <w-button id="btn-ready-p1" color="primary" text lg  @click="readyp1 = !readyp1">
+          <h1 v-if="!readyp1">Ready</h1>  
+          <h1 v-else>Cancel</h1>
+        </w-button>
       </w-card>
 
       <w-card id="card" shadow>
@@ -31,13 +44,29 @@ const play = ref(false)
             src="https://i.pinimg.com/originals/fd/aa/7a/fdaa7a4fcc3db7e975ad935786e3e57a.png"
           />
         </div>
-        <div id="color-p">CEK</div>
-        <w-button id="btn-ready-p1" color="primary" text lg
-          ><h2>READY</h2></w-button
-        >
+        <w-input id="input1"
+          class="mb4"
+          label="Name"
+          shadow>
+        </w-input>
+        <color-picker v-model:pureColor="pureColor" v-model:gradientColor="gradientColor"/>
+        <w-button id="btn-ready-p1" color="primary" text lg @click="readyp2 = !readyp2">
+          <h1 v-if="!readyp2">Ready</h1>  
+          <h1 v-else>Cancel</h1>
+        </w-button>
       </w-card>
     </w-flex>
+    <w-button
+      @click="play = !play"
+      id="bt-play"
+      class="ma1"
+      bg-color="success"
+      color="yellow-light2">
+      Play
+    </w-button>
   </div>
+
+  <board v-else />
 </template>
 
 <style>

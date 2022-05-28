@@ -4,9 +4,11 @@ import Home from "./components/Home.vue"
 import Game from "./components/Game.vue"
 import WaveUI from 'wave-ui'
 import 'wave-ui/dist/wave-ui.css'
+import Vue3ColorPicker from "vue3-colorpicker";
+import { createPinia } from 'pinia'
+import "vue3-colorpicker/style.css";
+import  UseGameStore  from "./stores/game.js";
 import { createRouter, createWebHashHistory } from 'vue-router'
-
-
 
 const routes = [
     { path: '/', component: Home },
@@ -19,9 +21,18 @@ const router = createRouter({
   routes, // short for `routes: routes`
 })
 
+router.beforeEach((to, from, next) => {
+  console.log(UseGameStore)
+  next()
+})
 
+const pinia = createPinia()
 const app = createApp(App)
+
+app.use(pinia)
 app.use(router)
+app.use(Vue3ColorPicker)
+
 new WaveUI(app, {
     // Some Wave UI options.
   })

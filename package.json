@@ -8,12 +8,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "pinia": "^2.0.14",
     "vue": "^3.2.25",
+    "vue-color": "^2.8.1",
     "vue-router": "^4.0.13",
+    "vue3-colorpicker": "^2.0.4",
     "wave-ui": "^2.35.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.0",
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "eslint": "^8.5.0",
+    "eslint-plugin-vue": "^8.2.0",
+    "prettier": "2.6.2",
     "vite": "^2.9.0"
   }
 }
