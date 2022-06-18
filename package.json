@@ -13,6 +13,7 @@
     "vue-color": "^2.8.1",
     "vue-router": "^4.0.13",
     "vue3-colorpicker": "^2.0.4",
+    "vuex": "^4.0.2",
     "wave-ui": "^2.35.0"
   },
   "devDependencies": {

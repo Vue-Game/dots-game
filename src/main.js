@@ -1,13 +1,14 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import { createPinia, PiniaVuePlugin  } from 'pinia'
+import  UseGameStore  from "./stores/game.js";
 import Home from "./components/Home.vue"
 import Game from "./components/Game.vue"
 import WaveUI from 'wave-ui'
 import 'wave-ui/dist/wave-ui.css'
 import Vue3ColorPicker from "vue3-colorpicker";
-import { createPinia } from 'pinia'
 import "vue3-colorpicker/style.css";
-import  UseGameStore  from "./stores/game.js";
+
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 const routes = [
@@ -22,13 +23,10 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  console.log(UseGameStore)
   next()
 })
-
 const pinia = createPinia()
 const app = createApp(App)
-
 app.use(pinia)
 app.use(router)
 app.use(Vue3ColorPicker)

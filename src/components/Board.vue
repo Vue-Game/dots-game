@@ -9,14 +9,11 @@ import { useScale } from "../composables/scale.js";
 import Marker from "./Marker.vue";
 import LineComponent from "./LineComponent.vue";
 
-function defineProps() {
-    return {
-        rows: Number,
-        column: Number
-    }
-}
 
-const props = defineProps()
+const props = {
+        rows: 2,
+        column: 2
+    }
 
 const points = ref([Point]);
 const lines = ref([Line]);
@@ -27,8 +24,8 @@ const linesMarked = ref([Line]);
 const { scale } = useScale()
 
 const gameStore = useGameStore()
+console.log(gameStore, "board")
 const { playerA, playerB, currentPlayer} = storeToRefs(gameStore);
-console.log(gameStore, "ini game store")
 
 const __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
@@ -99,32 +96,35 @@ const onLineMarked = function (lineMarked) {
     let boxesCompleted = findCompletedBoxes(boxesWithLine);
     if (boxesCompleted.length > 0) {
         (_a = boxesMarked.value).push.apply(_a, boxesCompleted);
-        console.log(lineMarked, boxesCompleted);
         (_b = currentPlayer.value.boxes).push.apply(_b, boxesCompleted);
         return;
     }
     gameStore.changePlayer();
 };
+
 const svgProps = computed(() => ({
   height: props.rows * scale.value,
-  width: props.columns * scale.value,
-  viewBox: `${-scale.value / 2} ${-scale.value / 2} ${
-    props.columns * scale.value
-  } ${props.rows * scale.value}`,
+  width: props.column * scale.value,
+  viewBox: `${-scale.value / 2} 
+  ${-scale.value / 2} 
+  ${props.column * scale.value}
+  ${props.rows * scale.value}`,
 }));
+
+console.log(svgProps)
+console.log(scale.value)
 
 onMounted(() => {
   createBoard();
   populateLines(boxes.value);
   gameStore.setCurrentPlayer(playerA.value);
-  
 });
 
 </script>
 
 <template>
 <h1/>
-  <!-- <svg
+  <svg
     class="board"
     :height="svgProps.height"
     :width="svgProps.width"
@@ -139,7 +139,7 @@ onMounted(() => {
         @marked="onLineMarked"
       />
     </g>
-    <g id="points">
+    <!-- <g id="points">
       <circle
         v-for="(point, i) in points"
         :key="`point_${i}`"
@@ -148,8 +148,8 @@ onMounted(() => {
         :r="scale * 0.1"
         fill="var(--color-tertiary)"
       />
-    </g>
-    <g id="markers">
+    </g> -->
+    <!-- <g id="markers">
       <g id="player-a">
         <Marker
           v-for="(boxMarked, i) in playerA.boxes"
@@ -168,8 +168,8 @@ onMounted(() => {
           :textContent="playerB.id"
         />
       </g>
-    </g>
-  </svg> -->
+    </g> -->
+  </svg>
 </template>
 
 <style scoped>

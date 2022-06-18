@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import  Player from "../models/Player";
 
-function useGameStore(){
+function useGameStore() {
   const useGameStore = defineStore({
     id: "game",
     state: () => ({
@@ -40,5 +40,7 @@ function useGameStore(){
   return useGameStore
 }
 
+console.log("game Store created")
 
-export default useGameStore
+
+export default useGameStore()

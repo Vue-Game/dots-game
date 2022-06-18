@@ -1,33 +1,29 @@
 <script>
 import { ref, defineEmits } from "vue";
 import { storeToRefs } from "pinia";
-import Point from "../models/Point";
-import  useGameStore  from "../stores/game";
-import { useScale } from "../composables/scale";
+import Point from "../models/Point.js";
+import  useGameStore  from "../stores/game.js";
+import { useScale } from "../composables/scale.js";
 
-function defineProps(){
-    return {
+const props = {
         a: Point,
         b: Point,
     }
-}
-const props = defineProps()
-
+// const gameStore = useGameStore();
 const { scale } = useScale();
 const clicked = ref(false);
 const emit = defineEmits(["marked"]);
-const gameStore = useGameStore();
-const { currentPlayer } = storeToRefs(gameStore);
+const  currentPlayer  = storeToRefs(gameStore);
 const onClick = () => {
-  if (clicked.value) return;
-  clicked.value = true;
-  emit("marked", { a: props.a, b: props.b });
+  if (clicked.value) {
+    return clicked.value = true, emit("marked", { a: props.a, b: props.b })
+  }
 };
 </script>
 
 <template>
   <line
-    @click="onClick"
+    @click="onClick()"
     class="line"
     :class="{ marked: clicked }"
     :x1="a.x * scale"
